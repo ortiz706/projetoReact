@@ -1,12 +1,25 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Botao from './components/botao';
+
+export function add(param){
+  return param + 1;
+}
+
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      counter: 0, 
       clockwise: true
     };
+  }
+
+  counterInc = () => {
+    this.setState({
+      counter: add(this.state.counter)
+    });
   }
 
   componentDidMount() {
@@ -21,8 +34,8 @@ class App extends React.Component {
     });
   };
 
+
   render() {
-    console.log('trace this.state:', this.state);
     return (
       <div className='App'>
         <header className='App-header'>
@@ -34,9 +47,12 @@ class App extends React.Component {
           <p>
             Edit <code>src/App.js</code> and save to reload.
           </p>
-          <button type='button' onClick={this.handleChange}>
-            Learn React
-          </button>
+          <Botao texto="Learn React" handleChange={this.handleChange} />
+          <br/>
+          <Botao texto="Aumenta contador" handleChange={this.counterInc} />            
+          <p>
+            Resultado {this.state.counter}
+          </p>
         </header>
       </div>
     );
