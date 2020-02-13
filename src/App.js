@@ -9,22 +9,47 @@ import{
   Redirect
 } from "react-router-dom";
 import Layout from './components/layout';
+import {connect} from 'react-redux';
+import Login from './views/login'
 
-const App =()=>{
+const GestaoAcesso =(authorized)=>{
+  if(authorized){
+    return(
+      <Switch>
+        <Route expect path="/home" component={Home} />
+        <Redirect to='/home' />
+      </Switch>
+    )
+  } 
+  return(
+    <Switch>
+      <Route path="/acessoNegado">
+        <div>
+          <h1>Acesso Negado</h1>
+        </div>
+      </Route>
+      <Redirect to='/login' />
+      <Route path="/login" component={Login} />
+    </Switch>
+  )
+
+}
+
+const App =props=>{
  
   return (
     <Layout>
-        <Switch>
-        <Route expect path="/home" component={Home} />
-        <Route path="/admin">
-          <div>
-            <h1>Admin</h1>
-          </div>
-        </Route>
-        <Redirect to='/home' />
-        </Switch>
+      <GestaoAcesso/>
       </Layout> 
    );
 }
 
-export default App;
+const mapStateToProps = state=>{
+  return{
+    authorized: state.login.authorized
+  }
+}
+
+
+
+export default connect(mapStateToProps, null)(App);
