@@ -6,7 +6,6 @@ import {
 import {selectTitle} from '../../constants'
 
 const Header =({router})=>{
-    console.log('---------------------',router);
     return(
         <Grid>
             <Typography variant='h2'>

@@ -1,9 +1,9 @@
 import React,{useState} from "react";
 import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
 import {operation} from './redux';
 import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
+import Botao from "../../components/botao";
 
 
 
@@ -29,7 +29,7 @@ const Login=(props)=>{
           id="standard-error-helper-text"
           label = "Password"
         />
-        <Button onClick = {solicitarAcesso} />
+        <Botao texto='enviar' handleChange={solicitarAcesso} />
         {redirectTo && <Redirect to='/home' />}
         </div>
         

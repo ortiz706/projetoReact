@@ -12,7 +12,7 @@ import Layout from './components/layout';
 import {connect} from 'react-redux';
 import Login from './views/login'
 
-const GestaoAcesso =(authorized)=>{
+const GestaoAcesso =({authorized})=>{
   if(authorized){
     return(
       <Switch>
@@ -28,8 +28,8 @@ const GestaoAcesso =(authorized)=>{
           <h1>Acesso Negado</h1>
         </div>
       </Route>
-      <Redirect to='/login' />
       <Route path="/login" component={Login} />
+      <Redirect to='/login' />
     </Switch>
   )
 
@@ -39,12 +39,13 @@ const App =props=>{
  
   return (
     <Layout>
-      <GestaoAcesso/>
+      <GestaoAcesso authorized={props.authorized}/>
       </Layout> 
    );
 }
 
 const mapStateToProps = state=>{
+  console.log('state', state)
   return{
     authorized: state.login.authorized
   }
