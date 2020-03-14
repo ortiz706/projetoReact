@@ -9,10 +9,10 @@ const INITIAL_STATE = {
     authorized: false
 }
 
-export default(state=INITIAL_STATE, action) =>{
+export default(state=INITIAL_STATE, action) => {
     switch(action.type){
         case SOLICITAR_ACESSO:
-            return{...state,userData:{...action.payLoad}, authorized: true }
+            return{...state, userData:{...action.payLoad}, authorized: true }
         default:
             return state    
     }
